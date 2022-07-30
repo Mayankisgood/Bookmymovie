@@ -1,0 +1,190 @@
+.. code:: ipython3
+
+    class bookmymovie:
+        
+        def __init__(self):
+            
+            self.row = int(input('how many rows'))
+            self.col = int(input('how many colloum'))
+            self.no_of_seats = self.row * self.col
+            self.matrix = []
+            self.seat_count = 0
+            self.current_income = 0
+            self.total_income = 0
+            self.u_details = {}
+            
+            for i in range(self.row):
+                a=[]
+                
+                for j in range(self.col):
+                    a.append('s')
+                    
+                self.matrix.append(a)
+            print(self.matrix)
+        def show_seats(self):
+            print('\n cinema')
+            print(end='  ')
+            
+            for j in range(1,self.col+1):
+                  print(j,end = ' ')
+            print(end ='\n')
+            a=0
+            for i in self.matrix:
+                    a+=1
+                    print(a,end=' ')
+                    print(' '.join(i),sep=',')
+        def buy(self):
+            a= int(input('Enter the row you want'))
+            b= int(input('Enter the col you want'))
+            if self.matrix[a-1][b-1]=='B':
+                print('the seat is already booked')
+            elif self.no_of_seats<60:
+                price = 10
+                print('ticket per person is $10,do you want to continue')
+            elif self.no_of_seats>=60:
+                 pass
+                
+            else:
+                price = 8
+                print('ticket is $8,do you want to continue')
+            user_input=input()
+            if user_input == 'Y':
+               u_dict={}
+               Uname = input('enter your name ')
+               Ugen  = input('enter your gender ')
+               Uage  = input('enter your age ')
+               UPN   = input('enter your mobile no. ')
+               self.matrix[a-1][b-1]='B'
+               self.seat_count +=1
+               self.current_income += price
+               u_dict[(a,b)] =[Uname,Ugen,Uage,UPN,price]
+               self.u_details.update(u_dict)
+               print('booked successfully')
+            else:
+                print('booking could not be completed')
+        def info(self):
+            check_a=int(input('tell us the row'))
+            check_b= int(input('tell us the col'))
+            if self.matrix[check_a-1] [check_b-1] =='B':
+                user= self.u_details[check_a,check_b]
+                print('name',user[0])
+                print('gender',user[1])
+                print('age',user[2])
+                print('PNO',user[3])
+                print('price',user[4])
+            else:
+                print('sorry we cannot complete')
+        
+        
+       
+        def statics(self):
+                print('\n')
+                print('the number of purchased tickets:  ',self.seat_count)
+                print('percentage of tickets sold : ',self.seat_count*100/self.no_of_seats,'%')
+                print('current income: {}'.format(self.current_income))
+                print('total income: ',self.no_of_seats*10)
+        def menu(self):
+            ans = True
+            while ans:
+                print('\n Enter the choice corresponding to the number')
+                self.choice = int(input('\n 1. show the seats\n 2. Buy ticket \n 3. statics \n 4.showbooked tickets'))
+                if self.choice ==1:
+                    self.show_seats()
+                elif self.choice ==2:
+                    self.buy()
+                elif self.choice ==3:
+                    self.statics()
+                elif self.choice ==4:
+                    self.info()
+                else:
+                    ans=False
+                    print('not a valid code')
+
+.. code:: ipython3
+
+    obj = bookmymovie()
+    obj.menu()
+
+
+.. parsed-literal::
+
+    how many rows5
+    how many colloum5
+    [['s', 's', 's', 's', 's'], ['s', 's', 's', 's', 's'], ['s', 's', 's', 's', 's'], ['s', 's', 's', 's', 's'], ['s', 's', 's', 's', 's']]
+    
+     Enter the choice corresponding to the number
+    
+     1. show the seats
+     2. Buy ticket 
+     3. statics 
+     4.showbooked tickets1
+    
+     cinema
+      1 2 3 4 5 
+    1 s s s s s
+    2 s s s s s
+    3 s s s s s
+    4 s s s s s
+    5 s s s s s
+    
+     Enter the choice corresponding to the number
+    
+     1. show the seats
+     2. Buy ticket 
+     3. statics 
+     4.showbooked tickets2
+    Enter the row you want5
+    Enter the col you want3
+    ticket per person is $10,do you want to continue
+    Y
+    enter your name Mayank
+    enter your gender Male
+    enter your age 31
+    enter your mobile no. 7023731231
+    booked successfully
+    
+     Enter the choice corresponding to the number
+    
+     1. show the seats
+     2. Buy ticket 
+     3. statics 
+     4.showbooked tickets1
+    
+     cinema
+      1 2 3 4 5 
+    1 s s s s s
+    2 s s s s s
+    3 s s s s s
+    4 s s s s s
+    5 s s B s s
+    
+     Enter the choice corresponding to the number
+    
+     1. show the seats
+     2. Buy ticket 
+     3. statics 
+     4.showbooked tickets3
+    
+    
+    the number of purchased tickets:   1
+    percentage of tickets sold :  4.0 %
+    current income: 10
+    total income:  250
+    
+     Enter the choice corresponding to the number
+    
+     1. show the seats
+     2. Buy ticket 
+     3. statics 
+     4.showbooked tickets4
+    tell us the row5
+    tell us the col3
+    name Mayank
+    gender Male
+    age 31
+    PNO 7023731231
+    price 10
+    
+     Enter the choice corresponding to the number
+    
+
